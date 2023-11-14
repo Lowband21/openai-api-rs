@@ -12,6 +12,12 @@ use serde::{Deserialize, Serialize};
 use super::{completions::Completion, CHAT_COMPLETION_CREATE};
 
 #[derive(Debug, Serialize, Deserialize)]
+pub struct ResponseFormat {
+	#[serde(rename = "type")]
+	type_field: String,
+}
+
+#[derive(Debug, Serialize, Deserialize)]
 pub struct ChatBody {
 	/// ID of the model to use.
 	/// See the model endpoint compatibility table for details on which models work with the Chat API.
@@ -78,7 +84,7 @@ pub struct ChatBody {
 	#[serde(skip_serializing_if = "Option::is_none")]
 	pub user: Option<String>,
 	#[serde(skip_serializing_if = "Option::is_none")]
-	pub response_format: Option<String>,
+	pub response_format: Option<ResponseFormat>,
 }
 
 pub trait ChatApi {
