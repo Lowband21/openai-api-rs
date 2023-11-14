@@ -14,7 +14,7 @@ use super::{completions::Completion, CHAT_COMPLETION_CREATE};
 #[derive(Debug, Serialize, Deserialize)]
 pub struct ResponseFormat {
 	#[serde(rename = "type")]
-	type_field: String,
+	pub type_field: String,
 }
 
 #[derive(Debug, Serialize, Deserialize)]
