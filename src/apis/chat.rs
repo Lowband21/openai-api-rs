@@ -77,6 +77,8 @@ pub struct ChatBody {
 	/// which can help OpenAI to monitor and detect abuse. Learn more.
 	#[serde(skip_serializing_if = "Option::is_none")]
 	pub user: Option<String>,
+	#[serde(skip_serializing_if = "Option::is_none")]
+	pub response_format: Option<String>,
 }
 
 pub trait ChatApi {
@@ -115,6 +117,7 @@ mod tests {
 			logit_bias: None,
 			user: None,
 			messages: vec![Message { role: Role::User, content: "Hello!".to_string() }],
+			response_format: None,
 		};
 		let rs = openai.chat_completion_create(&body);
 		let choice = rs.unwrap().choices;
